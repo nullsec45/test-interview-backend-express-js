@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid()) @db.VarChar(36)
+  username  String   @db.VarChar(100)
+  password  String   @db.VarChar(100)
+  name      String   @db.VarChar(100)
+  token     String?  @db.VarChar(100)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  Order Order[]
+
+  @@map("users")
+}
+
+model Food {
+  id        String   @id @default(uuid()) @db.VarChar(36)
+  name      String   @db.VarChar(100)
+  price     Decimal  @db.Decimal(10, 2)
+  stock     Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  orders Order[]
+
+  @@map("foods")
+}
+
+model Order {
+  id        String   @id @default(uuid()) @db.VarChar(36)
+  userId    String
+  foodId    String
+  quantity  Int
+  total     Decimal  @db.Decimal(10, 2)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+  food Food @relation(fields: [foodId], references: [id])
+
+  @@map("orders")
+}
