@@ -1,0 +1,33 @@
+{
+  "name": "vending-machine",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "jest --detectOpenHandles ./tests/order.test.ts",
+    "start-dev": "nodemon ./src/main.ts"
+  },
+  "dependencies": {
+    "@jest/globals": "^29.7.0",
+    "@prisma/client": "^5.22.0",
+    "@types/bcrypt": "^5.0.2",
+    "bcrypt": "^5.1.1",
+    "express": "^4.21.1",
+    "joi": "^17.13.3",
+    "uuid": "^11.0.2",
+    "winston": "^3.16.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-typescript": "^7.26.0",
+    "@types/express": "^5.0.0",
+    "@types/jest": "^29.5.14",
+    "@types/supertest": "^6.0.2",
+    "@types/uuid": "^10.0.0",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "prisma": "^5.22.0",
+    "supertest": "^7.0.0",
+    "typescript": "^5.6.3"
+  }
+}
